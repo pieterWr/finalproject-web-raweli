@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="dinami.ico" type="image/png">
+</head>
+<body class="bg-green-600 font-sans">
+    <nav class="bg-green-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">My Home</h1>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:text-blue-200">Home</a></li>
+                <li><a href="about.html" class="hover:text-blue-200">About</a></li>
+                <li><a href="gallery.html" class="hover:text-blue-200">Gallery</a></li>
+                <li><a href="calculator.html" class="hover:text-blue-200">Calculator</a></li>
+                <li><a href="registration.html" class="hover:text-blue-200">Registration</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Calculator Content -->
+    <div class="container mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg flex justify-center">
+        <div class="calculator bg-blue-100 p-6 rounded-lg shadow-md w-80">
+            <input type="text" id="display" class="w-full h-16 text-right text-2xl mb-4 p-2 bg-white border rounded" readonly>
+            <div class="grid grid-cols-4 gap-2">
+                <button onclick="clearDisplay()" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">C</button>
+                <button onclick="appendToDisplay('/')" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">/</button>
+                <button onclick="appendToDisplay('*')" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">*</button>
+                <button onclick="deleteLast()" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">⌫</button>
+
+                <button onclick="appendToDisplay('7')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">7</button>
+                <button onclick="appendToDisplay('8')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">8</button>
+                <button onclick="appendToDisplay('9')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">9</button>
+                <button onclick="appendToDisplay('-')" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">-</button>
+
+                <button onclick="appendToDisplay('4')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">4</button>
+                <button onclick="appendToDisplay('5')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">5</button>
+                <button onclick="appendToDisplay('6')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">6</button>
+                <button onclick="appendToDisplay('+')" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">+</button>
+
+                <button onclick="appendToDisplay('1')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">1</button>
+                <button onclick="appendToDisplay('2')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">2</button>
+                <button onclick="appendToDisplay('3')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">3</button>
+                <button onclick="calculate()" class="bg-green-500 text-white py-2 rounded row-span-2 hover:bg-green-600">=</button>
+
+                <button onclick="appendToDisplay('0')" class="bg-blue-300 text-white py-2 rounded col-span-2 hover:bg-blue-400">0</button>
+                <button onclick="appendToDisplay('.')" class="bg-blue-300 text-white py-2 rounded hover:bg-blue-400">.</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function deleteLast() {
+            let display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                let display = document.getElementById('display');
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
